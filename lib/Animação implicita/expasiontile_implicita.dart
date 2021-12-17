@@ -14,86 +14,82 @@ class _ExpasionTileImplicitaState extends State<ExpasionTileImplicita> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Animação implicita drop'),
+          title: Text('ExpasionTile Implicita'),
         ),
         body: Column(
           children: [
-            TESTE(pag: 1),
-            TESTE(pag: 2),
-            TESTE(pag: 3),
-            TESTE(pag: 4),
-            TESTE(pag: 5),
-            TESTE(pag: 6),
+            AnimatedExpansiveInplic(pag: 1),
+            AnimatedExpansiveInplic(pag: 2),
+            AnimatedExpansiveInplic(pag: 3),
+            AnimatedExpansiveInplic(pag: 4),
+            AnimatedExpansiveInplic(pag: 5),
+            AnimatedExpansiveInplic(pag: 6),
           ],
         ));
   }
 }
 
-class TESTE extends StatefulWidget {
+class AnimatedExpansiveInplic extends StatefulWidget {
   final int pag;
-  const TESTE({required this.pag, Key? key}) : super(key: key);
+  const AnimatedExpansiveInplic({required this.pag, Key? key})
+      : super(key: key);
 
   @override
-  _TESTEState createState() => _TESTEState();
+  _AnimatedExpansiveInplicState createState() =>
+      _AnimatedExpansiveInplicState();
 }
 
-class _TESTEState extends State<TESTE> {
+class _AnimatedExpansiveInplicState extends State<AnimatedExpansiveInplic> {
   bool selecao = false;
   double volta = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Container(
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  selecao = !selecao;
-                  volta += (1 / 2);
-                });
-              },
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Texto ${widget.pag}',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                        AnimatedRotation(
-                          turns: volta,
-                          duration: Duration(microseconds: 200),
-                          child: Icon(Icons.arrow_drop_down_circle_rounded),
-                        )
-                      ],
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              selecao = !selecao;
+              volta += (1 / 2);
+            });
+          },
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Texto ${widget.pag}',
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                  ),
+                    AnimatedRotation(
+                      turns: volta,
+                      duration: Duration(microseconds: 200),
+                      child: Icon(Icons.arrow_drop_down_circle_rounded),
+                    )
+                  ],
                 ),
               ),
             ),
-            AnimatedContainer(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: Colors.white,
-              duration: Duration(microseconds: 200),
-              child: AnimatedAlign(
-                heightFactor: selecao ? 1 : 0,
-                duration: Duration(seconds: 1),
-                alignment: Alignment.topCenter,
-                child: Center(
-                  child: Text(
-                      'A pessoa deve saber em que direção nasce o sol (leste). A partir daí é possível posicionar o braço direito em direção ao sol, a parte frontal da pessoa corresponde ao norte, automaticamente o sul se encontra atrás da mesma e consequentemente, o oeste se encontra na direção do braço esquerdo, na qual o sol se põe.'),
-                ),
-              ),
-            )
-          ],
+          ),
         ),
-      ),
+        AnimatedContainer(
+          clipBehavior: Clip.antiAlias,
+          color: Colors.white,
+          duration: Duration(microseconds: 200),
+          child: AnimatedAlign(
+            heightFactor: selecao ? 1 : 0,
+            duration: Duration(seconds: 1),
+            alignment: Alignment.topCenter,
+            child: Text(
+                'A pessoa deve saber em que direção nasce o sol (leste). A partir daí é possível posicionar o braço direito em direção ao sol, a parte frontal da pessoa corresponde ao norte, automaticamente o sul se encontra atrás da mesma e consequentemente, o oeste se encontra na direção do braço esquerdo, na qual o sol se põe.'),
+          ),
+        )
+      ],
     );
   }
 }

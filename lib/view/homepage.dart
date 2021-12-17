@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, file_names
 
 import 'package:aula03/Anima%C3%A7%C3%A3o%20controlada/animacaoBtn_controlada.dart';
+import 'package:aula03/Anima%C3%A7%C3%A3o%20controlada/expasiontole.dart';
 import 'package:aula03/Anima%C3%A7%C3%A3o%20implicita/ExpasionTile_implicita.dart';
 import 'package:aula03/Anima%C3%A7%C3%A3o%20implicita/animacaobtn_inplicita.dart';
 import 'package:flutter/material.dart';
@@ -43,14 +44,23 @@ class _HomePageState extends State<HomePage> {
             title: Text('3 Animação mudança de botão controlada'),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AnimatedControlBtn()));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AnimatedControlBtn(),
+                ),
+              );
             },
           ),
           ListTile(
             title: Text('4 Animção dropDown'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ExpansionTileControlada(),
+                ),
+              );
+            },
           )
         ],
       ),
